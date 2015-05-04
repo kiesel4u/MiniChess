@@ -56,7 +56,7 @@ public class State {
 
 	private void makeBoard(String s) {
 		String[] splitString = s.split("\n");
-
+		System.out.println(splitString.length);
 		if (Array.getLength(splitString) != 7)
 			throw new Error("false String input (not 7 rows)");
 
@@ -366,8 +366,10 @@ public class State {
 
 	public static void main(String args[]) throws FileNotFoundException,
 			IOException {
-		State board = new State(new FileReader(new File("otherBoardTest")));
-//		Writer writer = new FileWriter("output.txt");
+
+		System.out.println(new File("otherBoardTest").getAbsoluteFile());
+		State board = new State("12 W\nk.b.r\np..pp\nP.p..\n....P\n.R.PK\n.B...");
+//      Writer writer = new FileWriter("output.txt");
 		Writer writer = new PrintWriter(System.out);
 		board.print(writer);
 		board.printLegalMoves(writer);
