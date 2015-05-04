@@ -11,7 +11,7 @@ import java.io.*;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-public class Board {
+public class State {
 
 	char[][] squares = new char[6][5];
 	int round;
@@ -29,15 +29,15 @@ public class Board {
 	float whitePoints = 0.0f;
 	float blackPoints = 0.0f;
 
-	public Board() {
+	public State() {
 		makeBoard("1 W\nkqbnr\nppppp\n.....\n.....\nPPPPP\nRNBQK");
 	}
 
-	public Board(String s) {
+	public State(String s) {
 		makeBoard(s);
 	}
 
-	public Board(Reader reader) throws IOException {
+	public State(Reader reader) throws IOException {
 		String makeBoardString = "";
 		int readChar;
 		while ((readChar = reader.read()) != -1) {
@@ -46,7 +46,7 @@ public class Board {
 		makeBoard(makeBoardString);
 	}
 	
-	public Board(Board board) {
+	public State(State board) {
 		for(int i = 0; i < squares.length; i++) {
 			this.squares[i] = board.squares[i].clone();
 		}
@@ -366,7 +366,7 @@ public class Board {
 
 	public static void main(String args[]) throws FileNotFoundException,
 			IOException {
-		Board board = new Board(new FileReader(new File("otherBoardTest")));
+		State board = new State(new FileReader(new File("otherBoardTest")));
 //		Writer writer = new FileWriter("output.txt");
 		Writer writer = new PrintWriter(System.out);
 		board.print(writer);
