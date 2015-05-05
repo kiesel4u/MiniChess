@@ -21,6 +21,12 @@ public class PlayMiniChess {
 		PlayerModel blackPlayer = null;
 		
 		do {
+			System.out.println("possible Players: R=RandomPlayer, H=HeuristicPlayer, " +
+					"N=NegaMaxPlayer, I=IiterativeDeepeningNegaMaxPlayer, " +
+					"HM=HumanPlayer");
+			System.out.println("possible Game Modes: RvR, HvH, NvN, IvI, HMvHM, RvH, HvR," +
+					" HMvR, HMvH, HvHM, NvR, RvN, NvH, HvN, NvHM, HMvN, IvR, RvI, IvH, HvI," +
+					" IvN, NvI, IvHM, HMvI;\n");
 			System.out.print("Choose Game Mode: ");
 			try {
 				gameMode = buffRead.readLine();
