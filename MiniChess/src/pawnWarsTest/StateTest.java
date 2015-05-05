@@ -18,13 +18,16 @@ import pawnWars.State;
 public class StateTest {
 	
 	public static void main (String args[]) {
+		
 		State state = new State();
-		state.toString();
+		PrintWriter writer = new PrintWriter(System.out);
+		
 		try {
-			state.print(new PrintWriter(System.out));
+			state.print(writer);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			writer.close();
 		}
 	}
 	

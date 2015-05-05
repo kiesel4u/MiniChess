@@ -4,6 +4,7 @@
 package pawnWars;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.Reader;
 import java.io.Writer;
 import java.lang.reflect.Array;
@@ -70,6 +71,7 @@ public class State {
 		}
 	}
 
+	@Override
 	public String toString() {
 		String returnValue = round + " " + turn
 				+ System.getProperty("line.separator");
