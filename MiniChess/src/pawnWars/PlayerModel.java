@@ -55,24 +55,24 @@ public abstract class PlayerModel {
 		float currentScore;
 		char[] savePieces = new char[2];
 
-		for (Move mov : moveList) {
-			savePieces = State.move(mov);
+		for (Move move : moveList) {
+			savePieces = State.move(move);
 			if (State.endOfTheGame == State.otherPlayer()) { // WIN!
 				returnMoveList.clear();
-				returnMoveList.add(mov);
-				State.unmove(mov, savePieces);
+				returnMoveList.add(move);
+				State.unmove(move, savePieces);
 				return returnMoveList;
 			}
 			currentScore = -negaMax(State, maxDepth);
 
 			if (currentScore > maxScore) {
 				returnMoveList.clear();
-				returnMoveList.add(mov);
+				returnMoveList.add(move);
 				maxScore = currentScore;
 			} else if (currentScore == maxScore) {
-				returnMoveList.add(mov);
+				returnMoveList.add(move);
 			}
-			State.unmove(mov, savePieces);
+			State.unmove(move, savePieces);
 		}
 		return returnMoveList;
 	}
