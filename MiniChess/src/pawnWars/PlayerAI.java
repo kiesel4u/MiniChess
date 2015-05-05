@@ -78,7 +78,7 @@ public abstract class PlayerAI {
 	}
 
 	public ArrayList<Move> getNegaMaxPruneMoves(State State, int maxDepth) {
-		ArrayList<Move> moveList = State.genMoves();
+		ArrayList<Move> moveList = State.generateMovements();
 		ArrayList<Move> returnMoveList = new ArrayList<Move>();
 		char[] savePieces = new char[2];
 		float maxScore = -10000.0f;
@@ -86,7 +86,7 @@ public abstract class PlayerAI {
 
 		for (Move mov : moveList) {
 			savePieces = State.move(mov);
-			if (State.gameStatus == State.otherPlayer()) { // WIN!
+			if (State.endOfTheGame == State.otherPlayer()) { // WIN!
 				returnMoveList.clear();
 				returnMoveList.add(mov);
 				State.unmove(mov, savePieces);
@@ -121,7 +121,7 @@ public abstract class PlayerAI {
 			for (Move currentMove : legalMoves) {
 				if (currentMove != null) {
 					savePieces = State.move(currentMove);
-					if (State.gameStatus == State.otherPlayer()) { // Win!!!
+					if (State.endOfTheGame == State.otherPlayer()) { // Win!!!
 						returnMoves.clear();
 						returnMoves.add(currentMove);
 						State.unmove(currentMove, savePieces);
@@ -164,16 +164,16 @@ public abstract class PlayerAI {
 		if (maxDepth <= 0)
 			return State.compareScoreActualPlayer();
 
-		ArrayList<Move> legalMoves = State.genMoves();
+		ArrayList<Move> legalMoves = State.generateMovements();
 
 		for (Move mov : legalMoves) {
 			savePieces = State.move(mov);
 
-			if (State.gameStatus == State.otherPlayer()) {
+			if (State.endOfTheGame == State.otherPlayer()) {
 				scoreValue = 10000.0f;
-			} else if (State.gameStatus == '=') {
+			} else if (State.endOfTheGame == '=') {
 				scoreValue = 0.0f;
-			} else if (State.gameStatus == '?') {
+			} else if (State.endOfTheGame == '?') {
 				scoreValue = negaMax(State, maxDepth - 1);
 			} else {
 				scoreValue = -10000.0f;
@@ -193,15 +193,15 @@ public abstract class PlayerAI {
 		boolean isEqual = false;
 		char[] savePieces = new char[2];
 
-		ArrayList<Move> alLegalMoves = State.genMoves();
+		ArrayList<Move> alLegalMoves = State.generateMovements();
 		for (Move currentMove : alLegalMoves) {
 			savePieces = State.move(currentMove);
 
-			if (State.gameStatus == State.turn) {
+			if (State.endOfTheGame == State.turn) {
 				s = 1000;
-			} else if (State.gameStatus == '=') {
+			} else if (State.endOfTheGame == '=') {
 				s = 0;
-			} else if (State.gameStatus == '?') {
+			} else if (State.endOfTheGame == '?') {
 				s = (-negaMaxPrune(depth - 1, State, -beta, -alpha));
 			} else {
 				throw new Error("captured own king");
@@ -243,15 +243,15 @@ public abstract class PlayerAI {
 		boolean isEqual = false;
 		char[] savePieces = new char[2];
 
-		ArrayList<Move> alLegalMoves = State.genMoves();
+		ArrayList<Move> alLegalMoves = State.generateMovements();
 		for (Move currentMove : alLegalMoves) {
 			savePieces = State.move(currentMove);
 
-			if (State.gameStatus == State.otherPlayer()) {
+			if (State.endOfTheGame == State.otherPlayer()) {
 				s = 1000;
-			} else if (State.gameStatus == '=') {
+			} else if (State.endOfTheGame == '=') {
 				s = 0;
-			} else if (State.gameStatus == '?') {
+			} else if (State.endOfTheGame == '?') {
 				s = (-negamaxPruneTime(depth - 1, State, -beta, -alpha, startTime));
 			} else {
 				s = -1000;

@@ -7,9 +7,6 @@ package pawnWars;
 import java.io.*;
 import java.util.ArrayList;
 
-import miniChessGame.Move;
-import miniChessGame.Square;
-
 public class State {
 
 	char[][] squares = new char[6][5];
