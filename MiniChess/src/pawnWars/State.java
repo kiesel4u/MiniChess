@@ -5,6 +5,7 @@
 package pawnWars;
 
 import java.io.*;
+import java.util.ArrayList;
 
 import miniChessGame.Move;
 import miniChessGame.Square;
@@ -135,6 +136,38 @@ public class State {
 		}
 		print += System.getProperty("line.separator");
 		System.out.print(print);
+	}
+
+	public ArrayList<Move> scan(int row, int col, int directionRow, int directionCol, 
+			boolean singleStep, boolean pawnOrtho, boolean pawnDia, char colorOfPiece) {
+		int currentRow = row;
+		int currentCol = col;
+		ArrayList<Move> scanAndAdd = new ArrayList<Move>();
+		do
+		{
+			currentRow = currentRow + directionRow;
+			currentCol = currentCol + directionCol;
+
+			if (currentRow < 0 || currentCol < 0 || currentRow >= 6	|| currentCol >= 5) // out of bounds
+				break;
+
+			if(squares[currentRow][currentCol] != '.') 	// there is a piece p at x, y 
+			{
+				if(colorOfPiece(new Square(currentRow, currentCol)) == colorOfPiece)	// the color of p is c 
+					break;
+				if(!pawnOrtho)	// the color of p is not c and capture is not possible
+					break;
+				singleStep = true;
+				
+			}
+			else if(!pawnDia)
+				break;			
+			scanAndAdd.add(new Move(new Square(row, col).toString() + "-" + new Square(currentRow, currentCol).toString()));		
+			
+		}
+		while(!singleStep);
+		return scanAndAdd;
+
 	}
 
 }
