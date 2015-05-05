@@ -189,5 +189,72 @@ public class State {
 
 		return moveList;
 	}
+	
+	public ArrayList<Move> generateMovementOfPiece(int row, int col, char piece) {
+		ArrayList<Move> pieceMovement = new ArrayList<Move>();
+		char colorOfPiece = colorOfPiece(piece);
+		
+		switch (piece) {
+		// King
+		case 'K':
+		case 'k':
+			pieceMovement.addAll(scanOrtho(row, col, true, colorOfPiece));
+			pieceMovement.addAll(scanDiag(row, col, true, colorOfPiece));
+			break;
+			
+		// Queen	
+		case 'Q':
+		case 'q':
+			pieceMovement.addAll(scanOrtho(row, col, false, colorOfPiece));
+			pieceMovement.addAll(scanDiag(row, col, false, colorOfPiece));
+			break;
+			
+		// Rook	
+		case 'R':
+		case 'r':
+			pieceMovement.addAll(scanOrtho(row, col, false, colorOfPiece));
+			break;
+			
+		// Bishop	
+		case 'B':
+		case 'b':
+			pieceMovement.addAll(scanDiag(row, col, false, colorOfPiece));
+			pieceMovement.addAll(scan(row, col, 0, 1, true, false, true, colorOfPiece));
+			pieceMovement.addAll(scan(row, col, 0, -1, true, false, true, colorOfPiece));
+			pieceMovement.addAll(scan(row, col, 1, 0, true, false, true, colorOfPiece));
+			pieceMovement.addAll(scan(row, col, -1, 0, true, false, true, colorOfPiece));
+			break;
+			
+		// Knight
+		case 'N':
+		case 'n':
+			pieceMovement.addAll(scan(row, col, 2, 1, true, true, true, colorOfPiece));
+			pieceMovement.addAll(scan(row, col, 2, -1, true, true, true, colorOfPiece));
+			pieceMovement.addAll(scan(row, col, -2, 1, true, true, true, colorOfPiece));
+			pieceMovement.addAll(scan(row, col, -2, -1, true, true, true, colorOfPiece));
+			pieceMovement.addAll(scan(row, col, 1, 2, true, true, true, colorOfPiece));
+			pieceMovement.addAll(scan(row, col, 1, -2, true, true, true, colorOfPiece));
+			pieceMovement.addAll(scan(row, col, -1, 2, true, true, true, colorOfPiece));
+			pieceMovement.addAll(scan(row, col, -1, -2, true, true, true, colorOfPiece));
+			break;
+			
+		// Pawn	
+		case 'P':
+			pieceMovement.addAll(scan(row, col, 1, 0, true, false, true, colorOfPiece));
+			pieceMovement.addAll(scan(row, col, 1, -1, true, true, false, colorOfPiece));
+			pieceMovement.addAll(scan(row, col, 1, 1, true, true, false, colorOfPiece));
+			break;
+		case 'p':
+			pieceMovement.addAll(scan(row, col, -1, 0, true, false, true, colorOfPiece));
+			pieceMovement.addAll(scan(row, col, -1, -1, true, true, false, colorOfPiece));
+			pieceMovement.addAll(scan(row, col, -1, 1, true, true, false, colorOfPiece));
+			break;
+			
+		default:
+			throw new Error("This piece does not exist!");
+		}
+		
+		return pieceMovement;
+	}
 
 }
