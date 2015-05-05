@@ -18,13 +18,18 @@ public static void main(String[] args) {
 		
 		while(state.endOfTheGame == '?') {
 			state.print();
+			System.out.println("legal Movements for this turn are:");
+			state.printLegalMoves();
+			System.out.println("\n");
 			if(state.turn == 'W') {
-				System.out.println("White moves [" + whitePlayer.getMove(state).toString() + "]");
-				state.move(whitePlayer.getMove(state));
+				Move movement = whitePlayer.getMove(state);
+				System.out.println("White moves [" + movement.toString() + "]");
+				state.move(movement);
 				continue;
 			} else if(state.turn == 'B') {
-				System.out.println("Black moves [" + blackPlayer.getMove(state).toString() + "]");
-				state.move(blackPlayer.getMove(state));
+				Move movement = blackPlayer.getMove(state);
+				System.out.println("Black moves [" + movement.toString() + "]");
+				state.move(movement);
 				continue;
 			} else {
 				throw new Error("the variable state.turn has wrong content");
