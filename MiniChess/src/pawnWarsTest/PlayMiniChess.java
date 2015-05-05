@@ -6,12 +6,7 @@ package pawnWarsTest;
 
 import java.io.IOException;
 
-import pawnWars.HeuristicPlayer;
-import pawnWars.HumanPlayer;
-import pawnWars.Move;
-import pawnWars.PlayerModel;
-import pawnWars.RandomPlayer;
-import pawnWars.State;
+import pawnWars.*;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
@@ -48,9 +43,21 @@ public class PlayMiniChess {
 				gameModeSelected = true;
 			}
 			
+			if (gameMode.equalsIgnoreCase("NvN")) {
+				whitePlayer = new NegaMaxPlayer();
+				blackPlayer = new NegaMaxPlayer();
+				gameModeSelected = true;
+			}
+			
 			if (gameMode.equalsIgnoreCase("HMvHM")) {
 				whitePlayer = new HumanPlayer();
 				blackPlayer = new HumanPlayer();
+				gameModeSelected = true;
+			}
+			
+			if (gameMode.equalsIgnoreCase("RvH")) {
+				whitePlayer = new RandomPlayer();
+				blackPlayer = new HeuristicPlayer();
 				gameModeSelected = true;
 			}
 			
@@ -60,9 +67,15 @@ public class PlayMiniChess {
 				gameModeSelected = true;
 			}
 			
-			if (gameMode.equalsIgnoreCase("RvH")) {
+			if (gameMode.equalsIgnoreCase("HMvR")) {
+				whitePlayer = new HumanPlayer();
+				blackPlayer = new RandomPlayer();
+				gameModeSelected = true;
+			}
+			
+			if (gameMode.equalsIgnoreCase("RvHM")) {
 				whitePlayer = new RandomPlayer();
-				blackPlayer = new HeuristicPlayer();
+				blackPlayer = new HumanPlayer();
 				gameModeSelected = true;
 			}
 			
@@ -78,15 +91,39 @@ public class PlayMiniChess {
 				gameModeSelected = true;
 			}
 			
-			if (gameMode.equalsIgnoreCase("HMvR")) {
-				whitePlayer = new HumanPlayer();
+			if (gameMode.equalsIgnoreCase("NvR")) {
+				whitePlayer = new NegaMaxPlayer();
 				blackPlayer = new RandomPlayer();
 				gameModeSelected = true;
 			}
 			
-			if (gameMode.equalsIgnoreCase("RvHM")) {
+			if (gameMode.equalsIgnoreCase("RvN")) {
 				whitePlayer = new RandomPlayer();
+				blackPlayer = new NegaMaxPlayer();
+				gameModeSelected = true;
+			}
+			
+			if (gameMode.equalsIgnoreCase("NvH")) {
+				whitePlayer = new NegaMaxPlayer();
+				blackPlayer = new HeuristicPlayer();
+				gameModeSelected = true;
+			}
+			
+			if (gameMode.equalsIgnoreCase("HvN")) {
+				whitePlayer = new HeuristicPlayer();
+				blackPlayer = new NegaMaxPlayer();
+				gameModeSelected = true;
+			}
+			
+			if (gameMode.equalsIgnoreCase("NvHM")) {
+				whitePlayer = new NegaMaxPlayer();
 				blackPlayer = new HumanPlayer();
+				gameModeSelected = true;
+			}
+			
+			if (gameMode.equalsIgnoreCase("HMvN")) {
+				whitePlayer = new HumanPlayer();
+				blackPlayer = new NegaMaxPlayer();
 				gameModeSelected = true;
 			}
 			
