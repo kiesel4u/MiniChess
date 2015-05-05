@@ -169,5 +169,25 @@ public class State {
 		return scanAndAdd;
 
 	}
+	
+	public ArrayList<Move> scanDiag(int row, int col, boolean singleStep, char colorOfPiece) {
+		ArrayList<Move> moveList = new ArrayList<Move>();
+		moveList.addAll(scan(row, col, -1, -1, singleStep, true, true, colorOfPiece));
+		moveList.addAll(scan(row, col, -1, 1, singleStep, true, true, colorOfPiece));
+		moveList.addAll(scan(row, col, 1, -1, singleStep, true, true, colorOfPiece));
+		moveList.addAll(scan(row, col, 1, 1, singleStep, true, true, colorOfPiece));
+
+		return moveList;
+	}
+
+	public ArrayList<Move> scanOrtho(int row, int col, boolean singleStep, char colorOfPiece) {
+		ArrayList<Move> moveList = new ArrayList<Move>();
+		moveList.addAll(scan(row, col, 0, 1, singleStep, true, true, colorOfPiece));
+		moveList.addAll(scan(row, col, 0, -1, singleStep, true, true, colorOfPiece));
+		moveList.addAll(scan(row, col, 1, 0, singleStep, true, true, colorOfPiece));
+		moveList.addAll(scan(row, col, -1, 0, singleStep, true, true, colorOfPiece));
+
+		return moveList;
+	}
 
 }
