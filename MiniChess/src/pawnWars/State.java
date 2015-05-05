@@ -6,11 +6,15 @@ package pawnWars;
 
 import java.io.*;
 
+import miniChessGame.Move;
+import miniChessGame.Square;
+
 public class State {
 
 	char[][] squares = new char[6][5];
 	int round;
 	char turn;
+	char gameStatus = '?';
 	
 	public State() {
 		createChessBoard("1 W\nkqbnr\nppppp\n.....\n.....\nPPPPP\nRNBQK");
@@ -60,7 +64,67 @@ public class State {
 			i--;
 		}
 	}
+	
+	public char tileColor(char tile) {
+		if (Character.isUpperCase(tile))
+			return 'W';
+		if (Character.isLowerCase(tile))
+			return 'B';
+		throw new Error("not a tile on this square");
+	}
+		
 
+	public char tileColor(Square square) {
+		return this.tileColor(squares[square.row][square.col]);
+	}
+
+	public char[] move(Move mov) {
+		char[] returnPieces = new char[2];
+		if (squares[mov.from.row][mov.from.col] == '.') {
+			throw new Error("there is no tile on this square!");
+		}
+		if (tileColor(mov.from) != this.turn) {
+			throw new Error("only the other color ist allowed to move. CurrentColor: " + this.turn);
+		}
+
+		if(squares[mov.to.row][mov.to.col] == 'k') {
+			gameStatus = 'W';
+		} else if(squares[mov.to.row][mov.to.col] == 'K') {
+			gameStatus = 'B';
+		} else {
+			gameStatus = '?';
+		}
+
+		returnPieces[0] = squares[mov.to.row][mov.to.col]; // Save captured Piece
+		returnPieces[1] = squares[mov.from.row][mov.from.col]; // Save captured Piece
+		
+		squares[mov.to.row][mov.to.col] = squares[mov.from.row][mov.from.col];
+		squares[mov.from.row][mov.from.col] = '.';
+		
+		if(squares[mov.to.row][mov.to.col] == 'p' && mov.to.row == 0) { 
+			squares[mov.to.row][mov.to.col] = 'q';
+		} else if(squares[mov.to.row][mov.to.col] == 'P' && mov.to.row == 5) {
+			squares[mov.to.row][mov.to.col] = 'Q';
+		}
+		if (turn == 'W')
+			turn = 'B';
+		else {
+			turn = 'W';
+			round++;
+		}
+		
+		if(round == 41) {
+			gameStatus = '=';
+		}
+		
+		return returnPieces;
+	}
+	
+		public char[] move(String moveDesc) {
+			Move move = new Move(moveDesc);
+			return move(move);
+		}
+		
 	public void print() { //create string that represents the chess board and print it
 		String print = round + " " + turn
 				+ System.getProperty("line.separator");
