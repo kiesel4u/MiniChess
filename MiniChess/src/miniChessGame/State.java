@@ -368,7 +368,7 @@ public class State {
 			IOException {
 
 		System.out.println(new File("otherBoardTest").getAbsoluteFile());
-		State board = new State("12 W\nk.b.r\np..pp\nP.p..\n....P\n.R.PK\n.B...");
+		State board = new State();
 //      Writer writer = new FileWriter("output.txt");
 		Writer writer = new PrintWriter(System.out);
 		board.print(writer);
