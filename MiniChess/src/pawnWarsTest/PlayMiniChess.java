@@ -6,6 +6,7 @@ package pawnWarsTest;
 
 import java.io.IOException;
 
+import pawnWars.HeuristicPlayer;
 import pawnWars.HumanPlayer;
 import pawnWars.Move;
 import pawnWars.PlayerModel;
@@ -41,13 +42,49 @@ public class PlayMiniChess {
 				gameModeSelected = true;
 			}
 			
-			if (gameMode.equalsIgnoreCase("HWvR")) {
+			if (gameMode.equalsIgnoreCase("HvH")) {
+				whitePlayer = new HeuristicPlayer();
+				blackPlayer = new HeuristicPlayer();
+				gameModeSelected = true;
+			}
+			
+			if (gameMode.equalsIgnoreCase("HMvHM")) {
+				whitePlayer = new HumanPlayer();
+				blackPlayer = new HumanPlayer();
+				gameModeSelected = true;
+			}
+			
+			if (gameMode.equalsIgnoreCase("HvR")) {
+				whitePlayer = new HeuristicPlayer();
+				blackPlayer = new RandomPlayer();
+				gameModeSelected = true;
+			}
+			
+			if (gameMode.equalsIgnoreCase("RvH")) {
+				whitePlayer = new RandomPlayer();
+				blackPlayer = new HeuristicPlayer();
+				gameModeSelected = true;
+			}
+			
+			if (gameMode.equalsIgnoreCase("HMvH")) {
+				whitePlayer = new HumanPlayer();
+				blackPlayer = new HeuristicPlayer();
+				gameModeSelected = true;
+			}
+			
+			if (gameMode.equalsIgnoreCase("HvHM")) {
+				whitePlayer = new HeuristicPlayer();
+				blackPlayer = new HumanPlayer();
+				gameModeSelected = true;
+			}
+			
+			if (gameMode.equalsIgnoreCase("HMvR")) {
 				whitePlayer = new HumanPlayer();
 				blackPlayer = new RandomPlayer();
 				gameModeSelected = true;
 			}
 			
-			if (gameMode.equalsIgnoreCase("HBvR")) {
+			if (gameMode.equalsIgnoreCase("RvHM")) {
 				whitePlayer = new RandomPlayer();
 				blackPlayer = new HumanPlayer();
 				gameModeSelected = true;
