@@ -258,18 +258,18 @@ public class State {
 	}
 	
 	public ArrayList<Move> generateMovements() {
-		char tile;
+		char piece;
 		ArrayList<Move> moveList = new ArrayList<Move>();
 		// Scan Board
 		for (int row = 5; row >= 0; row--) {
 			for (int col = 0; col < 5; col++) {
-				tile = squares[row][col];
-				if (tile == '.')
+				piece = squares[row][col];
+				if (piece == '.')
 					continue;
-				else if (colorOfPiece(tile) != this.turn)
+				else if (colorOfPiece(piece) != this.turn)
 					continue;
 				else
-					moveList.addAll(generateMovementOfPiece(row, col, tile));
+					moveList.addAll(generateMovementOfPiece(row, col, piece));
 			}
 		}
 
