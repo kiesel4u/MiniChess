@@ -17,6 +17,16 @@ public class State {
 	char turn;
 	char endOfTheGame = '?';
 	
+	final float pawn = 1.0f;
+	final float bishop = 3.0f;
+	final float knight = 3.0f;
+	final float rook = 5.0f;
+	final float queen = 9.0f;
+	final float king = 10000.0f;
+	
+	float whitePoints = 0.0f;
+	float blackPoints = 0.0f;
+	
 	public State() {
 		createChessBoard("1 W\nkqbnr\nppppp\n.....\n.....\nPPPPP\nRNBQK");
 	}
@@ -287,5 +297,75 @@ public class State {
 	public void printLegalMoves() {
 		System.out.print(this.legalMovesToString(this.generateMovements()));
 	}
-
+	
+	public void unmove(Move mov, char[] pieces) {
+		squares[mov.to.row][mov.to.col] = pieces[0];
+		squares[mov.from.row][mov.from.col] = pieces[1];
+		
+		if (turn == 'B')
+			turn = 'W';
+		else {
+			turn = 'B';
+			round--;
+		}
+	}
+	
+	public float[] sumScores() {
+		float[] returnValue = new float[2];
+		float returnValueB = 0.0f;
+		float returnValueW = 0.0f;
+		for (int row = 5; row >= 0; row--) {
+			for (int col = 0; col < 5; col++) {
+				if(squares[row][col] == 'p')
+					returnValueB += pawn;
+				else if(squares[row][col] == 'n')
+					returnValueB += knight;
+				else if(squares[row][col] == 'b')
+					returnValueB += bishop;
+				else if(squares[row][col] == 'r')
+					returnValueB += rook;
+				else if(squares[row][col] == 'q')
+					returnValueB += queen;
+				else if(squares[row][col] == 'k')
+					returnValueB += king;
+				else if(squares[row][col] == 'P')
+					returnValueW += pawn;
+				else if(squares[row][col] == 'N')
+					returnValueW += knight;
+				else if(squares[row][col] == 'B')
+					returnValueW += bishop;
+				else if(squares[row][col] == 'R')
+					returnValueW += rook;
+				else if(squares[row][col] == 'Q')
+					returnValueW += queen;
+				else if(squares[row][col] == 'K')
+					returnValueW += king;
+			}
+		}
+		returnValue[0] = returnValueW;
+		returnValue[1] = returnValueB;
+		return returnValue;
+	}
+	
+	public float compareScore(char color) {
+		float[] scoreField = sumScores();
+		if(color == 'W')
+			return scoreField[0]-scoreField[1];
+		if(color == 'B')
+			return scoreField[1]-scoreField[0];
+		throw new Error("Illegal Color");
+	}
+	
+	public float compareScoreActualPlayer() {
+		return this.compareScore(this.turn);
+	}
+	
+	public char otherPlayer() {
+		if(turn == 'W')
+			return 'B';
+		else if(turn == 'B')
+			return 'W';
+		else
+			return turn;
+	}
 }
