@@ -284,8 +284,8 @@ public class State {
 		return returnValue;
 	}
 	
-	public void printLegalMoves(Writer writer) throws IOException {
-		writer.write(this.legalMovesToString(this.generateMovements()));
+	public void printLegalMoves() {
+		System.out.print(this.legalMovesToString(this.generateMovements()));
 	}
 
 }
