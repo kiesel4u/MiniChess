@@ -14,7 +14,7 @@ public class State {
 	char[][] squares = new char[6][5];
 	int round;
 	char turn;
-	char gameStatus = '?';
+	char endOfTheGame = '?';
 	
 	public State() {
 		createChessBoard("1 W\nkqbnr\nppppp\n.....\n.....\nPPPPP\nRNBQK");
@@ -73,7 +73,6 @@ public class State {
 		throw new Error("not a tile on this square");
 	}
 		
-
 	public char tileColor(Square square) {
 		return this.tileColor(squares[square.row][square.col]);
 	}
@@ -88,11 +87,11 @@ public class State {
 		}
 
 		if(squares[mov.to.row][mov.to.col] == 'k') {
-			gameStatus = 'W';
+			endOfTheGame = 'W';
 		} else if(squares[mov.to.row][mov.to.col] == 'K') {
-			gameStatus = 'B';
+			endOfTheGame = 'B';
 		} else {
-			gameStatus = '?';
+			endOfTheGame = '?';
 		}
 
 		returnPieces[0] = squares[mov.to.row][mov.to.col]; // Save captured Piece
@@ -114,7 +113,7 @@ public class State {
 		}
 		
 		if(round == 41) {
-			gameStatus = '=';
+			endOfTheGame = '=';
 		}
 		
 		return returnPieces;
