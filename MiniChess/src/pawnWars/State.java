@@ -9,10 +9,10 @@ import java.util.ArrayList;
 
 public class State {
 
-	char[][] squares = new char[6][5];
-	int round;
-	char turn;
-	char endOfTheGame = '?';
+	private char[][] squares = new char[6][5];
+	private int round;
+	public char turn;
+	public char endOfTheGame = '?';
 	
 	final float pawn = 1.0f;
 	final float bishop = 3.0f;

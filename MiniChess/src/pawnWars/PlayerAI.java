@@ -14,7 +14,7 @@ public abstract class PlayerAI {
 
 	private final long ITERATIVE_TIMEOUT = 6;
 
-	abstract Move getMove(State State);
+	public abstract Move getMove(State State);
 	int counter = 0;
 	float gameTime = 300.0f;
 

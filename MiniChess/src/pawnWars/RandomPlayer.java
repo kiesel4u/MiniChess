@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class RandomPlayer extends PlayerAI {
 
 	@Override
-	Move getMove(State state) {
+	public Move getMove(State state) {
 		ArrayList<Move> moveList = state.generateMovements();
 		return getRandomMove(moveList);
 	}
