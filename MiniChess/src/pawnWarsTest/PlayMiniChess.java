@@ -35,19 +35,19 @@ public class PlayMiniChess {
 			
 			gameModeSelected = false;
 			
-			if (gameMode.equalsIgnoreCase("R2R")) {
+			if (gameMode.equalsIgnoreCase("RvR")) {
 				whitePlayer = new RandomPlayer();
 				blackPlayer = new RandomPlayer();
 				gameModeSelected = true;
 			}
 			
-			if (gameMode.equalsIgnoreCase("HW2R")) {
+			if (gameMode.equalsIgnoreCase("HWvR")) {
 				whitePlayer = new HumanPlayer();
 				blackPlayer = new RandomPlayer();
 				gameModeSelected = true;
 			}
 			
-			if (gameMode.equalsIgnoreCase("HB2R")) {
+			if (gameMode.equalsIgnoreCase("HBvR")) {
 				whitePlayer = new RandomPlayer();
 				blackPlayer = new HumanPlayer();
 				gameModeSelected = true;
