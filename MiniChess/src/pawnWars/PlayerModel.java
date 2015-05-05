@@ -10,7 +10,7 @@ package pawnWars;
 import java.util.ArrayList;
 import java.util.Random;
 
-public abstract class PlayerAI {
+public abstract class PlayerModel {
 
 	private final long ITERATIVE_TIMEOUT = 6;
 

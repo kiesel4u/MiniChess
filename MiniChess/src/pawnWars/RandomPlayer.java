@@ -6,7 +6,7 @@ package pawnWars;
 
 import java.util.ArrayList;
 
-public class RandomPlayer extends PlayerAI {
+public class RandomPlayer extends PlayerModel {
 
 	@Override
 	public Move getMove(State state) {

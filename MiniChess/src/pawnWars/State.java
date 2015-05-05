@@ -285,8 +285,8 @@ public class State {
 	
 	public String legalMovesToString(ArrayList<Move> moveList) {
 		String returnValue = "";
-		for(Move mov : moveList) {
-			returnValue += "[" + mov.toString() + "], ";
+		for(Move move : moveList) {
+			returnValue += "[" + move.toString() + "], ";
 		}
 		return returnValue;
 	}
