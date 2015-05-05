@@ -70,7 +70,7 @@ public class State {
 			return 'W';
 		if (Character.isLowerCase(piece))
 			return 'B';
-		throw new Error("not a piece on this square");
+		throw new Error("empty square / there is not a piece on this square");
 	}
 		
 	public char colorOfPiece(Square square) {
@@ -80,7 +80,7 @@ public class State {
 	public char[] move(Move mov) {
 		char[] returnPieces = new char[2];
 		if (squares[mov.from.row][mov.from.col] == '.') {
-			throw new Error("there is no piece on this square!");
+			throw new Error("empty square / there is no piece on this square!");
 		}
 		if (colorOfPiece(mov.from) != this.turn) {
 			throw new Error("only the other color ist allowed to move. CurrentColor: " + this.turn);
