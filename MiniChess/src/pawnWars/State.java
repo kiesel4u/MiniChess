@@ -256,5 +256,36 @@ public class State {
 		
 		return pieceMovement;
 	}
+	
+	public ArrayList<Move> generateMovements() {
+		char tile;
+		ArrayList<Move> moveList = new ArrayList<Move>();
+		// Scan Board
+		for (int row = 5; row >= 0; row--) {
+			for (int col = 0; col < 5; col++) {
+				tile = squares[row][col];
+				if (tile == '.')
+					continue;
+				else if (colorOfPiece(tile) != this.turn)
+					continue;
+				else
+					moveList.addAll(generateMovementOfPiece(row, col, tile));
+			}
+		}
+
+		return moveList;
+	}
+	
+	public String legalMovesToString(ArrayList<Move> moveList) {
+		String returnValue = "";
+		for(Move mov : moveList) {
+			returnValue += "[" + mov.toString() + "], ";
+		}
+		return returnValue;
+	}
+	
+	public void printLegalMoves(Writer writer) throws IOException {
+		writer.write(this.legalMovesToString(this.generateMovements()));
+	}
 
 }
