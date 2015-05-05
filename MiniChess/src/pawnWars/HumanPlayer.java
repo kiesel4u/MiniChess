@@ -21,7 +21,6 @@ public class HumanPlayer extends PlayerModel {
 		Move nextMove = null;
 		boolean irregularMoveFlag = true;
 
-		System.out.println(state.legalMovesToString(legalMoves));
 		System.out.print("Type your Move: ");
 
 		do {
