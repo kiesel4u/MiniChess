@@ -65,24 +65,24 @@ public class State {
 		}
 	}
 	
-	public char tileColor(char tile) {
-		if (Character.isUpperCase(tile))
+	public char colorOfPiece(char piece) {
+		if (Character.isUpperCase(piece))
 			return 'W';
-		if (Character.isLowerCase(tile))
+		if (Character.isLowerCase(piece))
 			return 'B';
-		throw new Error("not a tile on this square");
+		throw new Error("not a piece on this square");
 	}
 		
-	public char tileColor(Square square) {
-		return this.tileColor(squares[square.row][square.col]);
+	public char colorOfPiece(Square square) {
+		return this.colorOfPiece(squares[square.row][square.col]);
 	}
 
 	public char[] move(Move mov) {
 		char[] returnPieces = new char[2];
 		if (squares[mov.from.row][mov.from.col] == '.') {
-			throw new Error("there is no tile on this square!");
+			throw new Error("there is no piece on this square!");
 		}
-		if (tileColor(mov.from) != this.turn) {
+		if (colorOfPiece(mov.from) != this.turn) {
 			throw new Error("only the other color ist allowed to move. CurrentColor: " + this.turn);
 		}
 
