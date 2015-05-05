@@ -12,7 +12,6 @@ public class State {
 	int round;
 	char turn;
 	
-
 	public State() {
 		createChessBoard("1 W\nkqbnr\nppppp\n.....\n.....\nPPPPP\nRNBQK");
 	}
