@@ -104,7 +104,7 @@ public abstract class PlayerModel {
 		return returnMoveList;
 	}
 
-	public ArrayList<Move> getIiterativeDeepeningNegaMaxPruneMoves(State State) {
+	public ArrayList<Move> getIterativeDeepeningNegaMaxPruneMoves(State State) {
 		ArrayList<Move> legalMoves = State.generateMovements();
 		ArrayList<Move> returnMoves = new ArrayList<Move>();
 		float maxScore = 10000;
