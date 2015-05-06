@@ -22,7 +22,7 @@ public class PlayMiniChess {
 		
 		do {
 			System.out.println("possible Players: R=RandomPlayer, H=HeuristicPlayer, " +
-					"N=NegaMaxPlayer, I=IiterativeDeepeningNegaMaxPlayer, " +
+					"N=NegaMaxPlayer, I=IterativeDeepeningNegaMaxPlayer, " +
 					"HM=HumanPlayer");
 			System.out.println("possible Game Modes: RvR, HvH, NvN, IvI, HMvHM, RvH, HvR," +
 					" HMvR, HMvH, HvHM, NvR, RvN, NvH, HvN, NvHM, HMvN, IvR, RvI, IvH, HvI," +
