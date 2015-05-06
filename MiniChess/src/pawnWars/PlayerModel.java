@@ -1,12 +1,9 @@
 /**
- * 
- */
-package pawnWars;
-
-/**
  * @author Michael Kiesel and Ralf Landwehr
  *
  */
+package pawnWars;
+
 import java.util.ArrayList;
 import java.util.Random;
 
