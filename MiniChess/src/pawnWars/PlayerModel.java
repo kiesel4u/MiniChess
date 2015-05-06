@@ -200,9 +200,11 @@ public abstract class PlayerModel {
 				s = 0;
 			} else if (State.endOfTheGame == '?') {
 				s = (-negaMaxPrune(depth - 1, State, -beta, -alpha));
-			} else {
-				throw new Error("captured own king");
-			}
+			} 
+			
+//			else { //not used anymore
+//				throw new Error("captured own king");
+//			}
 
 			if (s >= beta) {
 				State.unmove(currentMove, savePieces);
