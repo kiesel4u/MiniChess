@@ -19,7 +19,7 @@ public class OnlinePlayOffer {
 			
 			Client client = new Client("imcs-wurzburg.svcs.cs.pdx.edu", "80", "Pawn", "pawnwars");
 			
-			System.out.println("Select Player:");
+			System.out.println("possible Players:");
 			System.out.println("(1) RandomPlayer");
 			System.out.println("(2) HeuristicPlayer");
 			System.out.println("(3) NegaMaxPlayer");
@@ -28,7 +28,10 @@ public class OnlinePlayOffer {
 			
 			BufferedReader buffRead = new BufferedReader(new InputStreamReader(System.in));
 			boolean selected;
-			String choice="";
+			String choice = "";
+			Integer choiceInt = 0;
+			
+			System.out.print("Pick your Champion: ");
 			
 			do
 			{
@@ -38,9 +41,15 @@ public class OnlinePlayOffer {
 					e1.printStackTrace();
 				}
 				
+				try {
+					choiceInt = Integer.parseInt(choice);
+				} catch (NumberFormatException e1) {
+					choiceInt = 0;
+				}
+				
 				selected= true;
 				
-				switch(Integer.parseInt(choice)){
+				switch(choiceInt){
 				case 1:
 					player= new RandomPlayer();
 					break;
@@ -57,6 +66,7 @@ public class OnlinePlayOffer {
 					break;
 				 default: 
 					 System.out.println("No option selected, try again!");
+					 System.out.print("Pick your Champion: ");
 					 selected=false;
                  break;
 				}
