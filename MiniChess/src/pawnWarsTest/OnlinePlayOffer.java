@@ -85,12 +85,12 @@ public class OnlinePlayOffer {
 				}
 
 				else if((c == 'W' && state.turn == 'B') || (c == 'B' && state.turn == 'W'))
-					state.move(new Move(client.getMove()));
-				
+					try {
+						state.move(new Move(client.getMove()));
+					} catch (Exception e) {
+						//Catches NullPointerException, if game got interrupted.
+						//Do nothing at all(!), because no more moves are expected.
+					}
 			}
-			
-			System.out.println("Player " + state.endOfTheGame + " wins");
-			
 	}
-
 }
