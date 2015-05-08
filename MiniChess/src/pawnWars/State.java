@@ -307,7 +307,7 @@ public class State {
 		}
 	}
 	
-	public float[] sumScores() {
+	private float[] sumScores() {
 		float[] returnValue = new float[2];
 		float returnValueB = 0.0f;
 		float returnValueW = 0.0f;
