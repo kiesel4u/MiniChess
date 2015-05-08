@@ -14,9 +14,8 @@ public class OnlinePlayerAccept {
 		PlayerModel player = new IterativeDeepeningNegaMaxPlayer();
 		
 		Move saveMove;
-		String response="";
 		
-		Client client = new Client("imcs-wurzburg.svcs.cs.pdx.edu", "80", "Pawn", "pawnwars");
+		Client client = new Client("imcs.svcs.cs.pdx.edu", "3589", "Pawn", "pawnwars");
 	
 		System.out.print("Offer: ");
 		BufferedReader buffRead = new BufferedReader(new InputStreamReader(System.in));
@@ -41,9 +40,15 @@ public class OnlinePlayerAccept {
 			}
 
 			else if((c == 'W' && state.turn == 'B') || (c == 'B' && state.turn == 'W'))
+				try {
 					state.move(new Move(client.getMove()));
-
+				} catch (Exception e) {
+					//Catches NullPointerException, if game got interrupted.
+					//Do nothing at all(!), because no more moves are expected.
+				}
 		}
+		state.print();
+		System.out.println("Player " + state.endOfTheGame + " wins");
 	}
 
 }
